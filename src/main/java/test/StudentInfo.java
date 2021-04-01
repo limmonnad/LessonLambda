@@ -4,44 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 public class StudentInfo {
 
-    void testStudents(ArrayList<Student> a1, StudentChecks sc) {
+    void testStudents(ArrayList<Student> a1, Predicate<Student> pr) {
         for (Student s : a1) {
-            if (sc.check(s)) {
+            if (pr.test(s)) {
                 System.out.println(s);
             }
         }
     }
-
-
-//    void printStudentsOverGrade(ArrayList<Student> a1, double grade) {
-//        for (Student s : a1) {
-//            if (s.avgGrade > grade) {
-//                System.out.println(s);
-//            }
-//        }
-//
-//    }
-//
-//    void printStudentsUnderAge(ArrayList<Student> a1, int age) {
-//        for (Student s : a1) {
-//            if (s.age < age) {
-//                System.out.println(s);
-//            }
-//        }
-//
-//    }
-//
-//    void printStudentsMixCondition(ArrayList<Student> a1, int age, double grade, char sex) {
-//        for (Student s : a1) {
-//            if (s.age > age && s.avgGrade < grade && s.sex == sex) {
-//                System.out.println(s);
-//            }
-//        }
-//    }
-
 
 }
 
@@ -63,14 +36,21 @@ class Test {
 
         StudentInfo info = new StudentInfo();
 
-        Collections.sort(students, (s1, s2) -> s1.course-s2.course);
-        System.out.println(students);
 
-//        info.testStudents(students, s -> s.avgGrade > 8);
-//        System.out.println("--------------------------------------");
-//        info.testStudents(students, s -> s.age < 30);
-//        System.out.println("--------------------------------------");
-//        info.testStudents(students, s -> s.age > 20 && s.avgGrade < 9.5 && s.sex == 'f');
+
+
+        info.testStudents(students, s -> s.avgGrade > 8);
+        System.out.println("--------------------------------------");
+        info.testStudents(students, s -> s.age < 30);
+        System.out.println("--------------------------------------");
+        info.testStudents(students, s -> s.age > 20 && s.avgGrade < 9.5 && s.sex == 'f');
+
+
+
+
+//        Collections.sort(students, (s1, s2) -> s1.course-s2.course);
+//        System.out.println(students);
+
 
 
 //        System.out.println("--------------------------------------");
@@ -92,10 +72,10 @@ class Test {
 
 }
 
-
-interface StudentChecks {
-    boolean check(Student s);
-}
+//
+//interface StudentChecks {
+//    boolean check(Student s);
+//}
 
 
 //class CheckOverGrade implements StudentChecks {
